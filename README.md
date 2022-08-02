@@ -10,6 +10,7 @@ GNU Makefile to simplify docker image builds. Supports buildx
 cat << EOF > .makerc
 IMG_VERSION = 1.0.0
 IMG_REPOSITORY = helloworld
+IMG REPOSITORY_PREFIX = foo
 EOF
 ```
 
@@ -19,7 +20,15 @@ EOF
 make
 ```
 
-*Note:* The `.makerc` will automatically be read
+The following images will be built as a result.
+
+```
+foo/helloworld:1.0.0
+foo/helloworld:v1.0.0
+foo/helloworld:1.0.0-git-838acf9
+foo/helloworld:v1.0.0-git-838acf9
+foo/helloworld:latest
+```
 
 3. Push Image
 

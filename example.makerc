@@ -1,7 +1,7 @@
 IMG_VERSION = 1.0.0
 IMG_REPOSITORY = helloworld
 
-# IMG_REPOSITORY_PREFIX = foo/
+# IMG_REPOSITORY_PREFIX = foo
 
 # DOCKER_BUILDX_PLATFORMS = linux/amd64 \
 #                            linux/arm64 \

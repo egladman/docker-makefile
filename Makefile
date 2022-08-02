@@ -13,9 +13,11 @@ LATEST_ENABLED ?= true
 IMG_VARIANT := core
 GIT_SHORT_HASH := $(shell $(GIT) rev-parse --short HEAD || printf undefined)
 
+# Tags can have a 128 character limit
 IMG_TAGS := $(IMG_VERSION) \
             v$(IMG_VERSION) \
-            git-$(GIT_SHORT_HASH)
+            $(IMG_VERSION)-git-$(GIT_SHORT_HASH) \
+            v$(IMG_VERSION)-git-$(GIT_SHORT_HASH)
 
 ifndef IMG_VERSION
     $(error IMG_VERSION is not set)
@@ -28,10 +30,6 @@ endif
 ifeq ($(LATEST_ENABLED),true)
     override IMG_TAGS += latest
 endif
-
-# Image specific build args
-override DOCKER_BUILD_FLAGS += --build-arg JQ_VERSION=$(IMG_VERSION) \
-                               --build-arg VARIANT=$(IMG_VARIANT)
 
 DOCKER_BUILDX_PLATFORMS := linux/amd64 \
                            linux/arm64
